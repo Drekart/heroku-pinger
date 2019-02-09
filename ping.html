@@ -2,9 +2,11 @@
     <script src="./ping.js"></script>
     <script>
       const doPing = function(i) {
-        ping('http://' + document.getElementById('pingurl').value + '.herokuapp.com')
+        const appName = document.getElementById('pingurl').value
+
+        ping(`http://${appName}.herokuapp.com`)
           .then(function(delta) {
-            console.log(`Ping #${i} | ${delta} ms | ${new Date()}`)
+            console.log(`${appName} | Ping #${i} | ${delta} ms | ${new Date()}`)
           })
           .catch(function(error) {
             console.log(String(error));
