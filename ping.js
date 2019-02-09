@@ -30,17 +30,17 @@
     function ping(url, multiplier) {
         return new Promise(function(resolve, reject) {
             var start = (new Date()).getTime();
-            var response = function() { 
+            var response = function() {
                 var delta = ((new Date()).getTime() - start);
                 delta *= (multiplier || 1);
-                resolve(delta); 
+                resolve(delta);
             };
             request_image(url).then(response).catch(response);
-            
-            // Set a timeout for max-pings, 5s.
-            setTimeout(function() { reject(Error('Timeout')); }, 5000);
+
+            // Set a timeout for max-pings, 60s.
+            setTimeout(function() { reject(Error('Timeout')); }, 60000);
         });
     }
-    
+
     return ping;
 }));

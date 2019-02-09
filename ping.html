@@ -1,16 +1,33 @@
 <head>
     <script src="./ping.js"></script>
     <script>
-    var do_ping = function() {
-        ping(document.getElementById('pingurl').value).then(function(delta) {
-            alert(delta);
-        }).catch(function(error) {
-            alert(String(error));
-        });
-    };
+      const doPing = function(i) {
+        ping('http://' + document.getElementById('pingurl').value + '.herokuapp.com')
+          .then(function(delta) {
+            console.log(`Ping #${i} | ${delta} ms | ${new Date()}`)
+          })
+          .catch(function(error) {
+            console.log(String(error));
+          });
+      };
+
+      const repeatPing = function() {
+        let i = 1;
+
+        console.log('Sending first ping...')
+        doPing(i);
+
+        const pingLoop = setInterval(function() {
+          if (i === 17) {
+            clearInterval(pingLoop);
+          }
+          doPing(i+1);
+          i++;
+        }, 1770 * 1000);
+      }
     </script>
 </head>
 <body>
-    <input id='pingurl' type='text' value='http://google.com'></input>
-    <button onclick='do_ping()'>Ping</button>
+    http://<input id='pingurl' type='text' placeholder='your-app-name' value=''></input>.herokuapp.com
+    <button onclick='repeatPing()'>Ping</button>
 </body>
