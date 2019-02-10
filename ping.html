@@ -1,35 +1,46 @@
 <head>
-    <script src="./ping.js"></script>
-    <script>
-      const doPing = function(i) {
-        const appName = document.getElementById('pingurl').value
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <script src="./ping.js"></script>
+  <script>
+    const doPing = function(i) {
+      const appName = document.getElementById('pingurl').value
 
-        ping(`http://${appName}.herokuapp.com`)
-          .then(function(delta) {
-            console.log(`${appName} | Ping #${i} | ${delta} ms | ${new Date()}`)
-          })
-          .catch(function(error) {
-            console.log(String(error));
-          });
-      };
+      ping(`http://${appName}.herokuapp.com`)
+        .then(function(delta) {
+          console.log(`${appName} | Ping #${i} | ${delta} ms | ${new Date()}`)
+        })
+        .catch(function(error) {
+          console.log(String(error));
+        });
+    };
 
-      const repeatPing = function() {
-        let i = 1;
+    const repeatPing = function() {
+      let i = 1;
 
-        console.log('Sending first ping...')
-        doPing(i);
+      console.log('Sending first ping...')
+      doPing(i);
 
-        const pingLoop = setInterval(function() {
-          if (i === 17) {
-            clearInterval(pingLoop);
-          }
-          doPing(i+1);
-          i++;
-        }, 1770 * 1000);
-      }
-    </script>
+      const pingLoop = setInterval(function() {
+        if (i === 17) {
+          clearInterval(pingLoop);
+        }
+        doPing(i+1);
+        i++;
+      }, 1770 * 1000);
+    }
+  </script>
 </head>
 <body>
-    http://<input id='pingurl' type='text' placeholder='your-app-name' value=''></input>.herokuapp.com
-    <button onclick='repeatPing()'>Ping</button>
+  <div class="container">
+    <br>
+    <h2>Heroku App Pinger</h2>
+    <br>
+    <p>
+      http:// <input id='pingurl' type='text' placeholder='your-app-name' value=''></input> .herokuapp.com
+      <button onclick='repeatPing()'>Ping</button>
+    </p>
+    <p>
+      <em>Open your browser's JavaScript console to view the ping log.</em>
+    </p>
+  </div>
 </body>
