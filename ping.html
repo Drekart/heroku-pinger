@@ -1,4 +1,5 @@
 <head>
+  <title>Heroku App Pinger</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
   <link rel="stylesheet" href="style.css">
 
@@ -7,10 +8,12 @@
   <script>
     const doPing = function(i) {
       const appName = $('#pingurl').val()
+      document.title = `${document.title} | ${appName}`
 
       ping(`http://${appName}.herokuapp.com`)
         .then(function(delta) {
           console.log(`${appName} | Ping #${i} | ${delta} ms | ${new Date()}`)
+          document.title = `${document.title} | Ping #${i}`
         })
         .catch(function(error) {
           console.log(String(error));
@@ -20,7 +23,7 @@
     const repeatPing = function() {
       let i = 1;
       const max = Math.round($('#hours').val() * 2) - 1
-    
+
       console.log('Sending first ping...')
       doPing(i);
 
