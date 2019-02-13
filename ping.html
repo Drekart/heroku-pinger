@@ -8,12 +8,12 @@
   <script>
     const doPing = function(i) {
       const appName = $('#pingurl').val()
-      document.title = `${document.title} | ${appName}`
+      document.title = `Heroku App Pinger | ${appName}`
 
       ping(`http://${appName}.herokuapp.com`)
         .then(function(delta) {
           console.log(`${appName} | Ping #${i} | ${delta} ms | ${new Date()}`)
-          document.title = `${document.title} | Ping #${i}`
+          document.title = `Heroku App Pinger | ${appName} | Ping #${i}`
         })
         .catch(function(error) {
           console.log(String(error));
