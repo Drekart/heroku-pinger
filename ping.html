@@ -12,7 +12,7 @@
 
       ping(`http://${appName}.herokuapp.com`)
         .then(function(delta) {
-          console.log(`${appName} | Ping #${i} | ${delta} ms | ${new Date()}`)
+          console.log(`${appName} | Ping #${i} | ${delta} ms \n${new Date()}`)
           document.title = `Ping #${i} | ${appName}`
         })
         .catch(function(error) {
