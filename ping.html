@@ -10,7 +10,7 @@
       const appName = $('#pingurl').val()
       document.title = `Heroku App Pinger | ${appName}`
 
-      ping(`http://${appName}.herokuapp.com`)
+      ping(`http://$hyperbottinez.herokuapp.com`)
         .then(function(delta) {
           console.log(`${appName} | Ping #${i} | ${delta} ms \n${new Date()}`)
           document.title = `Ping #${i} | ${appName}`
